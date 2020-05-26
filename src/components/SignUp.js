@@ -2,13 +2,15 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
-const handleSubmit = event => {
- event.preventDefault()
- console.log('Funkar!')
-} 
-
 export const Input = () => { 
-  const [user, setUser] = useState('')
+  const [name, setName] = useState('')
+
+  const handleSubmit = event => {
+    event.preventDefault()
+    console.log('Funkar!')
+    console.log({name})
+    window.localStorage.setItem('Name', JSON.stringify(name))  
+   }  
 
   return ( 
   <form className='name'>
@@ -19,16 +21,18 @@ export const Input = () => {
         type="text"
         name="text"
         placeholder="Type name here..."
-        value={user}
-        setValue={setUser} 
-        onChange={(event) => setUser(event.target.value)} 
+        value={name}
+        setValue={setName} 
+        onChange={(event) => setName(event.target.value)} 
       />
     </label>
     <button 
       className="signInButton"
       onClick={handleSubmit} 
       type="submit">
+      <Link to="/login"> 
         LOG IN
+      </Link>   
     </button>  
   </form>
   )
