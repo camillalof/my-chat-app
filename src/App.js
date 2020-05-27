@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import { LogIn } from './components/LogIn'
+import { MessagesList } from './components/MessagesList'
 import { Input } from './components/SignUp'
-import { Tutorial } from './components/Tutorial'
+import { Message } from './components/Message'
 
 export const App = () => {
   const [accessToken, setAccessToken] = useState()
@@ -14,11 +14,11 @@ export const App = () => {
           <Route path="/" exact>
             <Input/>
           </Route>
-          <Route path="/login" exact>
-            <LogIn />
+          <Route path="/messageslist" exact>
+            <MessagesList />
           </Route>
-          <Route path="/Tutorial" exact>
-            <Tutorial />
+          <Route path="/message" exact>
+            <Message />
           </Route>  
         </Switch>  
       </main>
