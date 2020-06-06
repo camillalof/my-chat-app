@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import { MessagesList } from './components/MessagesList'
 import { Input } from './components/SignUp'
-import { Message } from './components/Message'
+import { GetMessage } from './components/Message'
 
 export const App = () => {
   const [accessToken, setAccessToken] = useState()
@@ -15,10 +15,10 @@ export const App = () => {
             <Input/>
           </Route>
           <Route path="/messageslist" exact>
-            <MessagesList />
+            <MessagesList/>
           </Route>
           <Route path="/message" exact>
-            <Message />
+            <GetMessage/>
           </Route>  
         </Switch>  
       </main>
