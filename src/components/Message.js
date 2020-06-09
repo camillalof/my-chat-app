@@ -3,42 +3,34 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import axios from 'axios'
 
 
-export const GetMessages = async () => {
+export const GetMessages = () => {
   const [userName, setUserName] = useState([]);
   const [userMessage, setUserMessage] = useState([]);
 
-  const fetchResponse = () => {
-    const getResponse = axios.get(
-      'http://167.172.108.61/?storage=camilla_lofroth/'
-    )  
-    axios.all([getResponse]).then(
-      axios.spread((...allData) => {
-      const allDataResponse = allData[0].config.url;
-
-      console.log(allDataResponse)
-      setUserName(allDataResponse)
-     })
+  const fetchResponse = async () => {
+    try {
+      const getResponse = await axios.get(
+      'http://167.172.108.61/?storage=camilla_lofroth'
     )
+    console.log(getResponse.data)
+    setUserMessage(getResponse.data)
+    } catch (error) {
+      alert('Error')
+    }
+    return[]
   }  
   
   useEffect(() => {
-    fetchData()
+    fetchResponse()
   }, [])
+  
+  console.log(userMessage)
 
   return (
     <div>
-      {playerName}
+        {userMessage.map(message => (
+        <p>{message.message !== null && typeof message.message === 'object'? message.message.mess: message.message }</p>
+      ))}
     </div>
   )
- 
-  {/*try {
-    const fetchResponse = await axios.get(
-      'http://167.172.108.61/?storage=camilla_lofroth'
-    );
-    return response.data;
-  } catch (error) {
-    alert('error');
   }
-
-  return []
-}*/}
