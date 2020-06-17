@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import { MessagesList } from './components/MessagesList'
+import { SendMessage } from './components/MessagesList'
 import { Input } from './components/SignUp'
 import { GetMessages } from './components/Message'
 
@@ -15,10 +15,11 @@ export const App = () => {
             <Input/>
           </Route>
           <Route path="/messageslist" exact>
-            <MessagesList/>
+            
           </Route>
           <Route path="/message" exact>
             <GetMessages/>
+            <SendMessage/>
           </Route>  
         </Switch>  
       </main>

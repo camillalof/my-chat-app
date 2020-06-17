@@ -30,7 +30,7 @@ export const Input = () => {
       className="signInButton"
       onClick={handleSubmit} 
       type="submit">
-      <Link to="/login"> 
+      <Link to="/message"> 
         LOG IN
       </Link>   
     </button>  

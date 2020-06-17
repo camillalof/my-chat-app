@@ -1,41 +1,56 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import axios from 'axios';
 
 
 const url = "http://167.172.108.61/?storage=camilla_lofroth"
 
-export const MessagesList = () => {
-  const [message, setMessage] = useState("") 
-  const [messagesList, setMessagesList] = useState([])   
+export const SendMessage = () => {
+  const [username, setUsername] = useState('')
+  const [message, setMessage] = useState('')
 
   const user = window.localStorage.getItem('Name')
 
-  useEffect(() => {
-    fetch(`http://167.172.108.61/?storage=camilla_lofroth`)
-      .then((res) => res.json())
-      .then((json) => {
-        if (json !== null) {
-          setMessagesList(json)
-        }
-      })
-  }, [])
-  
-  const handleFormSubmit = message => {
-    fetch(url, {
-      method: "POST",
-      body: JSON.stringify({ message }),
-      headers: { "Content-Type": "application/json" }
-    })
-      .then(() => setMessagesList(message))
-      .catch(err => console.log("error",err))
+  const handleMessage = async (event) => {
+    event.preventDefault()
+    try {
+      await axios.post(
+        'http://167.172.108.61/?storage=camilla_lofroth',
+        JSON.stringify({
+          user,
+          message
+        }),
+        setUsername(user),
+        console.log(message),
+        console.log(user)
+      );
+    } catch (error) {
+      alert('Error');
     }
+  }
   
     return (
-      <main>
-        <h1>{user}</h1>
-        {messagesList.map(message => (
-          message={message}
-        ))}
-      </main>    
+      <div>
+        <div>
+        <form className='chat-form'>
+      <h3>{user}</h3>
+      <textarea
+        rows='3'
+        onChange={(event) => setMessage(event.target.value)}
+        value={message}
+    ></textarea>
+    <div className='form-footer'>
+      <button
+        type='submit'
+        onClick={handleMessage}
+        disabled={message.length < 6 || message.length > 140 ? true : false}
+      >
+        Send a message
+      </button>
+    <p>{message.length} / 140</p>
+    </div>
+    </form> 
+    </div>  
+    </div> 
     )
   }

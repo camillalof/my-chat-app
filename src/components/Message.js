@@ -7,6 +7,8 @@ export const GetMessages = () => {
   const [userName, setUserName] = useState([]);
   const [userMessage, setUserMessage] = useState([]);
 
+  const user = window.localStorage.getItem('Name')
+
   const fetchResponse = async () => {
     try {
       const getResponse = await axios.get(
@@ -28,6 +30,9 @@ export const GetMessages = () => {
 
   return (
     <div>
+      <div>
+        <p>{user}</p>
+      </div>
         {userMessage.map(message => (
         <p>{message.message !== null && typeof message.message === 'object'? message.message.mess: message.message }</p>
       ))}
