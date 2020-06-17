@@ -15,10 +15,9 @@ export const App = () => {
             <Input/>
           </Route>
           <Route path="/messageslist" exact>
-            
+            <GetMessages/>
           </Route>
           <Route path="/message" exact>
-            <GetMessages/>
             <SendMessage/>
           </Route>  
         </Switch>  
