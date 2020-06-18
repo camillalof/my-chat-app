@@ -43,11 +43,10 @@ export const SendMessage = () => {
       <button
         type='submit'
         onClick={handleMessage}
-        disabled={message.length < 6 || message.length > 140 ? true : false}
+        disabled={message.length < 1 || message.length > 140 ? true : false}
       >
         Send a message
       </button>
-    <p>{message.length} / 140</p>
     </div>
     </form> 
     </div>  

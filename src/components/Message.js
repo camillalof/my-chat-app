@@ -4,7 +4,6 @@ import axios from 'axios'
 
 
 export const GetMessages = () => {
-  const [userName, setUserName] = useState([]);
   const [userMessage, setUserMessage] = useState([]);
 
   const user = window.localStorage.getItem('Name')
@@ -34,7 +33,10 @@ export const GetMessages = () => {
         <p>{user}</p>
       </div>
         {userMessage.map(message => (
-        <p>{message.message !== null && typeof message.message === 'object'? message.message.mess: message.message }</p>
+        <p>
+          {message.user !== null && typeof message.user === 'object'? message.user.mess: message.user }
+          {message.message !== null && typeof message.message === 'object'? message.message.mess: message.message }
+        </p>
       ))}
     </div>
   )
